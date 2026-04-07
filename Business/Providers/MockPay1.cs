@@ -22,12 +22,14 @@ namespace Business.Providers
 
         public async Task<PaymentResponse> ProcessPaymentAsync(PaymentRequest request)
         {
+            string transactionId = $"MP_1_{Guid.NewGuid()}";
+
             await Task.Delay(500);
             return new PaymentResponse
             {
                 Status = PaymentStatus.Pending,
                 Success = true,
-                TransactionId = $"MP_1_{Guid.NewGuid()}",
+                TransactionId = transactionId,
                 MetaData = new Dictionary<string, object>
                 {
                     ["provider"] = "MockPay 1",
